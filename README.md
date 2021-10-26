@@ -10,6 +10,7 @@ https://www.inflearn.com/course/nodejs-%EA%B0%95%EC%A2%8C-%EC%83%9D%ED%99%9C%EC%
 https://www.inflearn.com/course/node-js-%ED%99%9C%EC%9A%A9/dashboard
 
 ## Studied
+This is what I studied from several courses.
 
 ## __http__
 At first, I use http modules to connect my server.

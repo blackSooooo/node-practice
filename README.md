@@ -1,7 +1,9 @@
 # __node-practice__
 This is basic Node.js practice repository.
 
-I followed this course [Node.js 를 이용해 웹애플리케이션 만들기] (https://www.inflearn.com/course/nodejs-%EA%B0%95%EC%A2%8C-%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9/dashboard) 
+I followed this course [Node.js 를 이용해 웹애플리케이션 만들기] 
+
+https://www.inflearn.com/course/nodejs-%EA%B0%95%EC%A2%8C-%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9/dashboard
 
 ## Studied
 
@@ -31,7 +33,6 @@ I use express modules to connect my server.
 ```
 const express = require('express')
 const app = express()
-
 ```
 
 #### method
@@ -61,20 +62,20 @@ app.post('/topic', (req, res) => {
 params, query, body is property of req(request).
 So, we can use this like req.params, req.query, req.body
 
-req.params can get from server url like this
+__req.params__ can get from server url like this
 ```
 app.get('/topic/:id', (req, res) => {
     const id = req.params.id
 })
 ```
 
-req.query can get from url followed by __?__ string
+__req.query__ can get from url followed by __?__ string
 ```
 url => http://localhost:3000/topic?id=3
 const id = req.query.id
 ```
 
-req.body can get only when you use body-parsing middlewares. 
+__req.body__ can get only when you use body-parsing middlewares. 
 By default, it is __undefined__.
 ```
 const bodyParser = require('body-parser')

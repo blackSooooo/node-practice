@@ -87,20 +87,20 @@ app.get('/topic/:id', (req, res) => {
 })
 ```
 
-__req.query__ can get from url followed by ```__?__``` string.
+__req.query__ can get from url followed by ```?``` string.
 ```
 url => http://localhost:3000/topic?id=3
 const id = req.query.id
 ```
 
 __req.body__ can get only when you use body-parsing middlewares. 
-By default, it is ```__undefined__```.
+By default, it is ```undefined```.
 ```
 const bodyParser = require('body-parser')
 app.use('bodyParser.json()')
 ```
 
-but it is deprecated, so you can use like this using ```__express__```.
+but it is deprecated, so you can use like this using ```express```.
 ```
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -205,7 +205,10 @@ hasher({ password, salt }, (err, pass, salt, hash) => {
 ### passport
 Passport is middleware of Auth certification in Node.js. 
 
-various functions are provided by linking with express, express-session. And provide several strategies(local, facebook, google, etc...).
+various functions are provided by linking with express, express-session. 
+
+And provide several strategies(local, facebook, google, etc...).
+
 __A structure(express -> express-session, passport)__ in which session management is also included in executing the authentication logic. 
 ```
 const passport = require('passport');
@@ -278,9 +281,9 @@ if not null, then true (ex. user information).
 #### session management
 Session management in __Redis__. 
 
-If session is set in once, then call ```__deserializeUser()__```. 
+If session is set in once, then call ```deserializeUser()```. 
 
-If session is not set in once, then call ```__serializeUser()__```.
+If session is not set in once, then call ```serializeUser()```.
 ```
 passport.serializeUser((user, done) => {
     done(null, user.authId)
@@ -335,6 +338,7 @@ console.log(several.first(), several.second())
 ## __routes__
 We can divide our routes into several files in folder using __express.Router()__
 
+__In routes directory__
 ```
 // directory: routes/first.js 
 const express = require('express')
@@ -355,6 +359,7 @@ module.exports = (app) => {
 }
 ```
 
+__In App.js__
 ```
 const first = require('./routes/first')
 app.use(first) 

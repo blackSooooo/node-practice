@@ -17,9 +17,9 @@ This is what I studied from several courses.
 ## Index
 + [http](#http)
 + [express](#express)
-+ [params vs query, body](#params vs query, body)
++ [params, query, body](#params,query,body)
 + [templates](#templates)
-+ [cookies vs session](#cookies vs session)
++ [cookies, session](#cookies,session)
 + [security](#security)
 + [module](#module)
 + [routes](#routes)
@@ -75,7 +75,7 @@ app.post('/topic', (req, res) => {
 })
 ```
 
-## __params vs query, body__
+## __params,query,body__
 params, query, body is property of req(request).
 So, we can use this like req.params, req.query, req.body
 
@@ -116,7 +116,7 @@ app.set('views', './views')
 app.set('view engine', 'jade')
 ```
 
-## __cookies vs session__
+## __cookies,session__
 Cookies and Session have similar functions. 
 
 ```

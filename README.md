@@ -1,13 +1,13 @@
 # __node-practice__
-This is basic Node.js practice repository.
+This is basic ```Node.js``` practice repository.
 
 I followed this courses.
 
-[Node.js 를 이용해 웹애플리케이션 만들기]
+__[Node.js 를 이용해 웹애플리케이션 만들기]__
 
 https://www.inflearn.com/course/nodejs-%EA%B0%95%EC%A2%8C-%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9/dashboard
 
-[Node.Js 활용하기]
+__[Node.Js 활용하기]__
 
 https://www.inflearn.com/course/node-js-%ED%99%9C%EC%9A%A9/dashboard
 
@@ -77,40 +77,41 @@ app.post('/topic', (req, res) => {
 
 ## __params,query,body__
 params, query, body is property of req(request).
+
 So, we can use this like req.params, req.query, req.body
 
-__req.params__ can get from server url like this
+__req.params__ can get from server url like this.
 ```
 app.get('/topic/:id', (req, res) => {
     const id = req.params.id
 })
 ```
 
-__req.query__ can get from url followed by __?__ string
+__req.query__ can get from url followed by ```__?__``` string.
 ```
 url => http://localhost:3000/topic?id=3
 const id = req.query.id
 ```
 
 __req.body__ can get only when you use body-parsing middlewares. 
-By default, it is __undefined__.
+By default, it is ```__undefined__```.
 ```
 const bodyParser = require('body-parser')
 app.use('bodyParser.json()')
 ```
 
-but it is deprecated, so you can use like this using express.
+but it is deprecated, so you can use like this using ```__express__```.
 ```
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 ```
 
 ## __templates__
-template engines print software that combines some data into document.
+Template engines print software that combines some data into document.
 
 I use __jade__ templates engine.
 
-Tells app that 'I use jade engine' like this, and use .jade files in './views'.
+Tells app that 'I use jade engine' like this, and use .jade files in ```'./views'```.
 ```
 app.set('views', './views')
 app.set('view engine', 'jade')
@@ -125,7 +126,12 @@ You can check the Cookies and sessions through the Application tabs in developer
 
 ### __cookies__
 Cookies can use via __cookie-parser__.
-cookieParser(options) -> options' role is to ecrypt cookies data. When you see cookies with developer tools (F12), you can see raw cookies that are weak in security. So, you need to set this options.
+
+cookieParser(options) -> options' role is to ecrypt cookies data. 
+
+When you see cookies with developer tools (F12), you can see raw cookies that are weak in security. 
+
+So, you need to set this options.
 ```
 const cookieParser = require('cookie-parser')
 app.use(cookieParser('This is security methods'))
@@ -138,8 +144,11 @@ const name = req.signedCookies.name | req.cookies.name
 
 ### __session__
 Session can use via __express-session__.
+
 if you want to store session in file or db. you need to add store option in session.
+
 The difference between cookies and session is that other people don't know what's key is.
+
 session is stored in identified something (i think, more security).
 ```
 const session = require('express-session');
@@ -155,7 +164,7 @@ app.use(session({
 ```
 
 #### caution
-When deletes or add sessions, redirect should proceed after that. So, callback is needed to secure flow.
+When deletes or add sessions, redirect should proceed after that. so, callback is needed to secure flow.
 
 ```
 // add sessions
@@ -181,6 +190,7 @@ const hasher = bkfd2Password();
 ```
 
 pbkdf2-password use hasher function that needs options ({ password, salt }).
+
 __salt__ helps password to decode more complicated.
 
 ```
@@ -193,7 +203,9 @@ hasher({ password, salt }, (err, pass, salt, hash) => {
 ```
 
 ### passport
-Passport is middleware of Auth certification in Node.js. various functions are provided by linking with express, express-session and provide several strategies(local, facebook, google, etc...).
+Passport is middleware of Auth certification in Node.js. 
+
+various functions are provided by linking with express, express-session. And provide several strategies(local, facebook, google, etc...).
 __A structure(express -> express-session, passport)__ in which session management is also included in executing the authentication logic. 
 ```
 const passport = require('passport');
@@ -210,12 +222,12 @@ app.use(passport.session());
 ```
 
 #### strategy
-There are several __strategy__ including local, facebook, google.
-1. user call login, or certain url.
-2. authentication check, and if it is not authenticated, excute the authentication module.
-3. comes to passport middleware, and excute according to strategy.
-4. if authentication is successful, then store data in the session and go to page
-5. if authentication fails, then redirect the login page.
+There are several __strategy__ including ```local, facebook, google```.
+1. User call login, or certain url.
+2. Authentication check, and if it is not authenticated, excute the authentication module.
+3. Comes to passport middleware, and excute according to strategy.
+4. If authentication is successful, then store data in the session and go to page
+5. If authentication fails, then redirect the login page.
 
 ```
 // local
@@ -259,10 +271,16 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }))
 ```
 
-done(string, boolean) => first argument mentions err message, second argument metions true or false, if not null, then true (user information).
+done(string, boolean) => first argument mentions err message, second argument metions true or false. 
+
+if not null, then true (ex. user information).
 
 #### session management
-Session management in __Redis__. if session is set in once, then call deserializeUser(). if session is not set in once, then call serializeUser().
+Session management in __Redis__. 
+
+If session is set in once, then call ```__deserializeUser()__```. 
+
+If session is not set in once, then call ```__serializeUser()__```.
 ```
 passport.serializeUser((user, done) => {
     done(null, user.authId)

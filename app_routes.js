@@ -7,6 +7,10 @@ app.use('/p1', p1)
 const p2 = require('./routes/p2')
 app.use('/p2', p2)
 
+app.get('/', (req, res) => {
+    res.send('hello World!!')
+})
+
 app.listen(3000, () => {
     console.log('3000 port is connected !!')
 })

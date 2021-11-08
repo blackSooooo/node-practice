@@ -23,6 +23,7 @@ This is what I studied from several courses.
 + [security](#security)
 + [module](#module)
 + [routes](#routes)
++ [controllers](#controllers)
 
 ## __http__
 At first, I use http modules to connect my server.
@@ -371,4 +372,33 @@ You can also omit prefix in url like this.
 ```
 const first = require('./routes/first')
 app.use('/first', first) // url: /first/first (o), /first (x)
+```
+
+## __controllers__
+We can write function, ```middleware``` sending response from router. 
+
+### divide routers and controllers
+Callback function used in routes (middleware) can write in controllers and export modules, then use them in routes.
+
+```From```
+
+```
+// routes/products.js
+router.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+```
+
+```To```
+```
+// controllers/products.js
+const hello = (req, res) => {
+    res.send('Hello World!')
+}
+module.exports = {
+    hello
+}
+// routes/products.js
+const { hello } = require('./controllers/products)
+router.get('/', hello)
 ```

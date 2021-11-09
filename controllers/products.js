@@ -1,12 +1,14 @@
-const hello = (req, res) => {
-    res.send('Hello world!!!!!!!')
-}
+const productModel = require('../models/Product')
 
-const bye = (req, res) => {
-    res.send('Bye World!!!!')
+const createProduct = async (req, res, next) => {
+    try {
+        const newProducts = await productModel.create(req.body)
+        res.status(201).json(newProducts)
+    } catch (err) {
+        next(err)
+    }
 }
 
 module.exports = {
-    hello,
-    bye
+    createProduct
 }

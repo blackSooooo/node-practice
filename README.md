@@ -460,13 +460,12 @@ productModel.find = jest.fn()
 ```
 
 ### how to use
-__```beforeEach```__ is called before test. So, frequently used in many tests modules declared in this block.
-
-__```describe```__ is large unit that contains several testing modules that have similar concepts.
-
-__```test```__ or __```it```__ is smallest unit that tests specific features. In this block, you can test with ```expecet```.
-
-__```expect```__ is followed by __matcher__. There are many matchers.
+|Name|function|
+|---|---|
+|beforeEach|called before test. So, frequently used in many tests modules declared in this block.|
+|describe|large unit that contains several testing modules that have similar concepts.|
+|test, it|smallest unit that tests specific features. In this block, you can test with ```expecet```|
+|expect|followed by ```matcher```. There are many matchers.|
 
 __```matcher```__
 |Name|function|

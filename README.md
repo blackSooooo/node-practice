@@ -465,15 +465,30 @@ __```test```__ or __```t```__ is smallest unit that tests specific features. In 
 
 __```expect```__ is followed by __matcher__. There are many matchers.
 
-
-
+__```matcher```__
+|Name|function|
+|---|---|
+|toBe|```Object.is``` to test exact equality|
+|toBeTruthy|matches anything that an if statement treats as ```true```|
+|toStrictEqual|same as ```toEqual``` but more strict|
+|toHaveBeenCalledWith|same as ```toBeCalledWith```|
+|toBeDefined|matches only ```undefined```|
 
 ### node-mocks-http
 This provides Mock objects like __req, res, next__. 
 
 You can test specific modules with these objects when passing calls controllers.
 
+
 ### integration test
 Integration test is verification that ```many modules``` are executed correctly.
 
 ### supertest
+Supertest use server module to communicate with real DB.
+
+```
+const request = require('supertest')
+const app = require('../../app_tdd')
+
+request(app).post('/products).send()
+```

@@ -461,7 +461,7 @@ __```beforeEach```__ is called before test. So, frequently used in many tests mo
 
 __```describe```__ is large unit that contains several testing modules that have similar concepts.
 
-__```test```__ or __```t```__ is smallest unit that tests specific features. In this block, you can test with ```expecet```.
+__```test```__ or __```it```__ is smallest unit that tests specific features. In this block, you can test with ```expecet```.
 
 __```expect```__ is followed by __matcher__. There are many matchers.
 
@@ -482,6 +482,8 @@ You can test specific modules with these objects when passing calls controllers.
 
 ### integration test
 Integration test is verification that ```many modules``` are executed correctly.
+
+file names: __*.init.test.js__
 
 ### supertest
 Supertest use server module to communicate with real DB.

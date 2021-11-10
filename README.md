@@ -11,6 +11,10 @@ __[Node.Js 활용하기]__
 
 https://www.inflearn.com/course/node-js-%ED%99%9C%EC%9A%A9/dashboard
 
+__[따라하며 배우는 TDD 개발]__
+
+https://www.inflearn.com/course/%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B0-%EB%B0%B0%EC%9A%B0%EB%8A%94-tdd
+
 ## Studied
 This is what I studied from several courses.
 
@@ -24,6 +28,7 @@ This is what I studied from several courses.
 + [module](#module)
 + [routes](#routes)
 + [controllers](#controllers)
++ [tests](#tests)
 
 ## __http__
 At first, I use http modules to connect my server.
@@ -398,7 +403,77 @@ const hello = (req, res) => {
 module.exports = {
     hello
 }
+
 // routes/products.js
 const { hello } = require('./controllers/products)
 router.get('/', hello)
 ```
+
+### error handling
+You can use try catch blocks to handle error in server.
+
+When error comes, ```next()``` function is executed in catch block.
+
+But to use this method, you should write error middlewares in server.js. 
+
+next() calls this middlewares automatically recognizing that "this is error handling middlewares!".
+
+```
+app.use((error, req, res, next) => {
+    res.status(500).json({ message: error.message })
+})
+```
+
+## __tests__
+To test our node.js code, we can use __jest, node-mocks-http, supertest__ Libraries.
+
+Tests consist of unit test and integration test, etc....
+
+Directory: tests/integration, tests/unit
+
+__how to install__
+
+```
+npm i -D jest, node-mocks-http, supertest
+```
+
+### unit test
+Unit test is verification that ```specific modules``` are executed correctly.
+
+This is independent of DB, or other external things. 
+
+So, we use ```mock``` to replace these things and leads to not affect.
+
+### jest
+Jest find tests files in tests directory, or *.test.js, *.spec.js files.
+
+You should make mock function with ```jest.fn()``` to track how many times called, when to use, ...etc. 
+
+This can leads to be independent from DB because jest.fn() is fake function that have specific features(create, find, delete, upate ...)
+
+```
+productModel.create = jest.fn()
+productModel.find = jest.fn()
+```
+
+### how to use
+__```beforeEach```__ is called before test. So, frequently used in many tests modules declared in this block.
+
+__```describe```__ is large unit that contains several testing modules that have similar concepts.
+
+__```test```__ or __```t```__ is smallest unit that tests specific features. In this block, you can test with ```expecet```.
+
+__```expect```__ is followed by __matcher__. There are many matchers.
+
+
+
+
+### node-mocks-http
+This provides Mock objects like __req, res, next__. 
+
+You can test specific modules with these objects when passing calls controllers.
+
+### integration test
+Integration test is verification that ```many modules``` are executed correctly.
+
+### supertest
